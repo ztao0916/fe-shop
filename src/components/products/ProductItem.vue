@@ -1,6 +1,6 @@
 <template>
  <div>
-    <div class="product">
+    <!-- <div class="product">
       <router-link :to="'/detail/' + product._id" class="product-link">
       <p class="product__name">产品名称：{{product.name}}</p>
       <p class="product__description">介绍：{{product.description}}</p>
@@ -9,6 +9,51 @@
       <img :src="product.image" alt="" class="product__image">
     </router-link>
     <product-button :product="product"></product-button>
+   </div> -->
+   <div class="products">
+    <el-table
+    class="table"
+    :data="products">
+      <el-table-column
+        prop="name"
+        label="产品名称"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        prop="description"
+        label="介绍"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        prop="price"
+        label="价格"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        prop="manufacturer.name"
+        label="生产厂商"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        label="图片"
+        width="200">
+        <template slot-scope="scope">
+          <img :src="scope.row.image" class="product__image">
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="操作"
+        width="180">
+        <template slot-scope="scope">
+          <product-button :id="scope.row._id"></product-button>
+        </template>
+      </el-table-column>
+    </el-table>
    </div>
  </div>
 </template>
@@ -16,7 +61,7 @@
 <script>
 import ProductButton from '@/components/products/ProductButton'
 export default {
-  props: ['product'],
+  props: ['products'],
   components: {
     'product-button': ProductButton
   }
@@ -27,5 +72,14 @@ export default {
     width: 100px;
     height: 100px;
     margin: 0 auto;
+  }
+  .products {
+    padding-top: 10px;
+    text-align: center;
+  }
+  .el-table .cell {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 </style>

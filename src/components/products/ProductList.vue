@@ -1,12 +1,13 @@
 <template>
   <div>
     <div class="products">
-      <div class="container">
+      <!-- <div class="container">
         this is ProductList
-      </div>
-      <template v-for="product in products">
+      </div> -->
+      <!-- <template v-for="product in products">
         <product-item :product="product" :key="product._id"></product-item>
-      </template>
+      </template> -->
+      <product-item :products="products"></product-item>
     </div>
   </div>
 </template>
