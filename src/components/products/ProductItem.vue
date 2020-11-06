@@ -1,5 +1,4 @@
 <template>
- <div>
     <!-- <div class="product">
       <router-link :to="'/detail/' + product._id" class="product-link">
       <p class="product__name">产品名称：{{product.name}}</p>
@@ -10,7 +9,6 @@
     </router-link>
     <product-button :product="product"></product-button>
    </div> -->
-   <div class="products">
     <el-table
     class="table"
     :data="products">
@@ -54,8 +52,6 @@
         </template>
       </el-table-column>
     </el-table>
-   </div>
- </div>
 </template>
 
 <script>
