@@ -68,7 +68,16 @@
   </div>
  </form> -->
   <div class="productInfo">
-    <el-form class="form" ref="form" :model="modelData" label-width="180px">
+    <el-form
+      class="form"
+      ref="form"
+      :model="modelData"
+      label-width="180px"
+      v-loading="loading"
+      element-loading-text="拼命加载中"
+      element-loading-spinner="el-icon-loading"
+      element-loading-background="rgba(0, 0, 0, 0.8)"
+    >
       <el-form-item label="名称">
           <el-input v-model="modelData.name"></el-input>
       </el-form-item>
@@ -107,6 +116,11 @@ export default {
       modelData: {
         manufacturer: {name: ''}
       }
+    }
+  },
+  computed: {
+    loading () {
+      return this.$store.state.showLoader
     }
   },
   created () {

@@ -19,9 +19,17 @@
     </div>
   </form> -->
   <div class="manufacturerInfo">
-    <el-form class="form" ref="form" :model="model" label-width="180px">
+    <el-form
+      class="form"
+      ref="form"
+      :model="modelData"
+      label-width="180px"
+      v-loading="loading"
+      element-loading-text="拼命加载中"
+      element-loading-spinner="el-icon-loading"
+      element-loading-background="rgba(0, 0, 0, 0.8)">
       <el-form-item label="名称">
-        <el-input v-model="model.name"></el-input>
+        <el-input v-model="modelData.name"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button v-if="isEditing" type="primary" @click="saveManufacturer">更新制造商</el-button>
@@ -34,10 +42,29 @@
 <script>
 export default {
   name: 'ManufacturerForm',
+  data () {
+    return {
+      modelData: {}
+    }
+  },
   props: ['model', 'isEditing'],
+  created () {
+    var manufacturer = this.model
+    this.modelData = {...manufacturer}
+  },
+  computed: {
+    loading () {
+      return this.$store.state.showLoader
+    }
+  },
+  watch: {
+    model (val, oldVal) {
+      this.modelData = val
+    }
+  },
   methods: {
     saveManufacturer () {
-      this.$emit('save-manufacturer', this.model)
+      this.$emit('save-manufacturer', this.modelData)
     }
   }
 }
