@@ -1,5 +1,5 @@
 <template>
- <div>
+ <!-- <div>
    <table class="table">
       <thead>
         <tr>
@@ -16,7 +16,29 @@
           </tr>
       </tbody>
    </table>
- </div>
+ </div> -->
+  <div class="manufacturers">
+    <el-table
+      border
+      :data="manufacturers"
+    >
+      <el-table-column
+        prop="name"
+        label="制造商"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        label="操作"
+        width="200">
+        <template slot-scope="scope">
+          <el-button class="modify" type="text" size="small">
+            <router-link :to="'/admin/manufacturers/edit/' + scope.row._id">修改</router-link>
+          </el-button>
+          <el-button class="remove" @click="removeManufacturer(scope.row._id)" type="text" size="small">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
@@ -48,15 +70,16 @@ export default {
 </script>
 
 <style scoped>
-table {
-  margin: 0 auto;
+.manufacturers {
+  width: 381px;
+  margin: 100px auto;
 }
 
 .modify {
   color: blue;
 }
 
-.remove a {
+.remove {
   color: red;
 }
 </style>

@@ -3,9 +3,10 @@
   <div class="title">
     <h1>{{msg}}</h1>
   </div>
-  <template v-for="product in cart">
+  <!-- <template v-for="product in cart">
     <product-item :product="product" :key="product._id"></product-item>
-  </template>
+  </template> -->
+  <product-item :products="cart"></product-item>
  </div>
 </template>
 
@@ -18,7 +19,7 @@ export default {
   },
   data () {
     return {
-      msg: 'welcome to cart page!'
+      msg: '购物车'
     }
   },
   computed: {

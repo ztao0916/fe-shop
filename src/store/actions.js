@@ -64,6 +64,8 @@ export const productActions = {
       commit(UPDATE_PRODUCT_SUCCESS, {
         product
       })
+    }).catch(err => {
+      console.error(err)
     })
   },
   addProduct ({ commit }, payload) {

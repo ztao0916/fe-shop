@@ -1,9 +1,12 @@
 <template>
-  <product-form
-   @save-product="addProduct"
-   :model="model"
-   :manufacturers="manufacturers">
-  </product-form>
+  <div class="title">
+    <h1>This is Admin/Add</h1>
+    <product-form
+    @save-product="addProduct"
+    :model="model"
+    :manufacturers="manufacturers">
+    </product-form>
+  </div>
  </template>
 
 <script>
@@ -13,6 +16,11 @@ export default {
   components: {
     'product-form': ProductForm
   },
+  data () {
+    return {
+      model: {manufacturer: {name: ''}}
+    }
+  },
   created () {
     if (this.manufacturers.length === 0) {
       this.$store.dispatch('allManufacturers')
@@ -21,9 +29,6 @@ export default {
   computed: {
     manufacturers () {
       return this.$store.getters.allManufacturers
-    },
-    model () {
-      return {}
     }
   },
   methods: {
